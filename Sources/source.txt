@@ -1,0 +1,377 @@
+WSS Docs5 Operations & Infrastructure Playbook for IT Business Analysts
+Bölmə 1. Giriş və məqsəd
+1.1 Bu kitabçanın məqsədi
+1.2 Kimlər üçün nəzərdə tutulub
+1.3 BA-nın texniki məsuliyyət sərhədi
+1.4 Nəyi etməlidir, nəyi etməməlidir
+1.5 Riskli əməliyyatlar və dəyişiklik intizamı
+1.6 Test, pre-prod, prod mühitlərində davranış fərqləri
+Bölmə 2. Docs5 arxitekturasını başa düşmək
+2.1 Docs5 ekosistemi nədir
+2.2 Əsas komponentlər
+Web
+PostgreSQL
+Storage
+Keycloak
+Vault
+Nginx
+əlavə servislər
+2.3 Sorğunun sistem daxilində hərəkəti
+2.4 Hansı problem hansı komponentdə axtarılmalıdır
+2.5 Domen, port, konteyner və servis əlaqəsi
+2.6 Test və production yerləşdirmə modelləri
+Bölmə 3. Linux əsasları
+3.1 SSH ilə qoşulma
+3.2 Fayl sistemi
+3.3 Navigation (pwd, ls, cd)
+3.4 Fayl əməliyyatları (cp, mv, rm)
+3.5 Fayl baxış və edit (cat, nano, tail)
+3.6 Permissions (chmod, chown)
+3.7 sudo və root
+3.8 apt və dnf paket menecerləri ilə işləmək
+Bölmə 4. SSH ilə serverə qoşulmaq
+4.1 SSH nədir
+4.2 Login/password ilə qoşulma
+4.3 SSH key ilə qoşulma
+4.4 Jump server üzərindən qoşulma
+4.5 Hostname və IP ilə qoşulma fərqi
+4.6 Qoşulma zamanı tipik xətalar
+connection refused
+permission denied
+no route to host
+host key verification failed
+4.7 SSH session təhlükəsizliyi
+4.8 Session-dan düzgün çıxmaq
+Bölmə 5. WinSCP ilə SFTP/SSH bağlantısı
+5.1 WinSCP nədir
+5.2 SFTP və SCP fərqi
+5.3 WinSCP ilə yeni connection yaratmaq
+5.4 Hostname, port, username, password doldurulması
+5.5 SSH key ilə WinSCP bağlantısı
+5.6 Saved session yaratmaq
+5.7 Server fayl sistemində gəzmək
+5.8 Windows-dan Linux-a fayl upload etmək
+5.9 Linux-dan Windows-a fayl download etmək
+5.10 Drag-and-drop və manual copy
+5.11 Permissions və overwrite riskləri
+5.12 WinSCP ilə uzaq faylı edit etmək
+5.13 WinSCP-də tipik xətalar və həllər
+Bölmə 6. Linux daxilində hərəkət və əsas komandalar
+6.1 pwd
+6.2 ls, ls -la
+6.3 cd
+6.4 tree
+6.5 clear
+6.6 history
+6.7 tab completion
+6.8 wildcard istifadəsi
+6.9 hidden file anlayışı
+6.10 path-lə rahat işləmək
+Bölmə 7. Fayllarla və qovluqlarla işləmək
+7.1 mkdir
+7.2 touch
+7.3 cp
+7.4 mv
+7.5 rm
+7.6 rm -rf riskləri
+7.7 duplicate/backup copy yaratmaq
+7.8 recursive copy
+7.9 qovluq strukturunu köçürmək
+7.10 fayl axtarmaq
+find
+locate
+7.11 fayl içində mətn axtarmaq
+grep
+grep -r
+7.12 fayl ölçüsü və tarixçəsini görmək
+Bölmə 8. Fayla baxmaq və redaktə etmək
+8.1 cat
+8.2 less
+8.3 more
+8.4 head
+8.5 tail
+8.6 tail -f ilə log izləmək
+8.7 nano ilə redaktə
+8.8 vim ilə baza səviyyəsində iş
+8.9 config faylını dəyişəndə nəzarət addımları
+8.10 dəyişiklikdən əvvəl backup almaq
+Bölmə 9. İcazələr və istifadəçilər
+9.1 user, group, owner anlayışı
+9.2 chmod
+9.3 chown
+9.4 executable permission
+9.5 777 niyə təhlükəlidir
+9.6 755, 644 tipik halları
+9.7 permission denied xətasının analizi
+9.8 sudo və sudo su
+9.9 root session ilə işləmə intizamı
+Bölmə 10. Sistem resursları və monitorinq
+10.1 top
+10.2 htop
+10.3 free -m
+10.4 df -h
+10.5 du -sh
+10.6 uptime
+10.7 ps aux
+10.8 kill və kill -9
+10.9 CPU, RAM, disk bottleneck necə anlaşılır
+10.10 disk dolması və sistemə təsiri
+Bölmə 11. Linux şəbəkə əsasları
+11.1 IP, port, hostname
+11.2 private subnet nədir
+11.3 eyni subnetdə iki server necə danışır
+11.4 ping
+11.5 curl
+11.6 ss -tuln
+11.7 traceroute və route anlayışı
+11.8 local və remote bağlantı məntiqi
+Bölmə 12. Firewall və UFW
+12.1 firewall nədir
+12.2 UFW nədir
+12.3 ufw status
+12.4 ufw enable / disable
+12.5 port açmaq
+12.6 source IP üzrə icazə vermək
+12.7 qaydanı silmək
+12.8 default policy
+12.9 deny vs allow
+12.10 firewall problemi necə anlaşılır
+12.11 servis açıqdır, amma port niyə görünmür
+12.12 təhlükəsiz qayda yazma prinsipləri
+Bölmə 13. Arxivləmə və sıxma əməliyyatları
+13.1 tar nədir
+13.2 tar.gz nədir
+13.3 zip və tar fərqi
+13.4 qovluğu tar etmək
+13.5 tar.gz ilə compress etmək
+13.6 archive açmaq
+13.7 list məzmunu görmək
+13.8 backup üçün arxivləmə ssenariləri
+13.9 böyük qovluqları köçürmədən əvvəl yığmaq
+13.10 Windows-a ötürmək üçün arxiv hazırlamaq
+Bölmə 14. Linux-dan Linux-a fayl ötürmə
+14.1 scp nədir
+14.2 bir serverdən digərinə scp ilə fayl atmaq
+14.3 qovluq ötürmək
+14.4 rsync giriş səviyyəsi
+14.5 eyni subnetdə sürətli müvəqqəti transfer yanaşması
+14.6 SSH üzərindən transfer riskləri
+Bölmə 15. Linux-dan Windows-a və Windows-dan Linux-a fayl ötürmə
+15.1 Windows-da scp istifadəsi
+15.2 PowerShell üzərindən scp
+15.3 Linux serverdən Windows-a fayl endirmək
+15.4 Windows-dan Linux serverə fayl atmaq
+15.5 path format fərqləri
+15.6 tipik scp xətaları
+15.7 böyük fayllar üçün tövsiyələr
+Bölmə 16. Müvəqqəti fayl paylaşımı: Python HTTP server + wget
+16.1 Bu yanaşma nə vaxt lazımdır
+16.2 Python ilə qovluğu host etmək
+16.3 hansı portda publish etmək
+16.4 digər serverdən wget ilə çəkmək
+16.5 lokal IP ilə fayl ötürmə ssenarisi
+16.6 firewall və port yoxlaması
+16.7 directory listing riskləri
+16.8 iş bitəndən sonra host-un bağlanması
+16.9 wget ilə tək fayl çəkmək
+16.10 wget ilə recursive çəkmə əsasları
+Bölmə 17. wget və curl ilə fayl və endpoint işi
+17.1 wget nədir
+17.2 curl və wget fərqi
+17.3 URL-dən fayl endirmək
+17.4 output file təyin etmək
+17.5 self-signed / internal certificate halları
+17.6 auth tələb edən endpoint-lər
+17.7 connection troubleshoot
+Bölmə 18. Docker əsasları
+18.1 Docker nədir
+18.2 image, container, volume, network anlayışı
+18.3 container və VM fərqi
+18.4 Docs5 niyə docker üzərində qurulur
+18.5 docker version və info yoxlaması
+18.6 docker ps
+18.7 docker ps -a
+18.8 docker images
+18.9 container lifecycle
+start
+stop
+restart
+rm
+18.10 docker inspect
+18.11 docker stats
+Bölmə 19. Docker Compose ilə işləmək
+19.1 docker compose nədir
+19.2 docker-compose və docker compose fərqi
+19.3 compose file strukturu
+19.4 services
+19.5 ports
+19.6 environment
+19.7 volumes
+19.8 networks
+19.9 docker compose up -d
+19.10 docker compose down
+19.11 docker compose stop
+19.12 docker compose restart
+19.13 docker compose logs -f
+19.14 docker compose ps
+19.15 config dəyişikliyindən sonra nə etmək
+19.16 rebuild halları
+19.17 orphan container və digər tipik problemlər
+Bölmə 20. Container daxilində işləmək
+20.1 docker exec -it
+20.2 bash və sh fərqi
+20.3 container daxilində fayl tapmaq
+20.4 container daxilində config oxumaq
+20.5 container daxilində log faylı axtarmaq
+20.6 container daxilində command işlətmək
+20.7 container içərisinə fayl yerləşdirmək
+docker cp
+20.8 container-dən host-a fayl çıxarmaq
+20.9 container daxilində müvəqqəti debug
+20.10 dəyişikliklərin persistent olub-olmaması
+Bölmə 21. Container logları və troubleshooting
+21.1 docker logs
+21.2 docker logs -f
+21.3 son sətirləri görmək
+21.4 restart loop-ları anlamaq
+21.5 exit code anlayışı
+21.6 “Restarting (139)” kimi halların mənası
+21.7 logdan root cause tapmaq
+21.8 app log vs proxy log vs system log
+Bölmə 22. Docs5 qovluq və servis strukturu
+22.1 /opt/wss/docs
+22.2 /opt/wss/storage
+22.3 /opt/wss/vault
+22.4 /opt/wss/keycloak
+22.5 /opt/wss/postgres və ya system PostgreSQL
+22.6 nginx config yerləri
+22.7 env və vault.settings faylları
+22.8 hansı servis hansı domainə cavab verir
+Bölmə 23. Nginx və reverse proxy əsasları
+23.1 reverse proxy nədir
+23.2 upstream nədir
+23.3 proxy_pass
+23.4 80 və 443 məntiqi
+23.5 SSL certificate və private key
+23.6 server_name
+23.7 nginx config test
+23.8 common 502 səbəbləri
+23.9 upstream connection refused
+23.10 nginx log oxuma əsasları
+Bölmə 24. PostgreSQL-ə qoşulma: pgAdmin və digər üsullar
+24.1 PostgreSQL connection anlayışı
+24.2 host, port, db name, username, password
+24.3 pgAdmin nədir
+24.4 pgAdmin ilə yeni server connection yaratmaq
+24.5 pgAdmin-də General və Connection hissələri
+24.6 SSH tunnel ilə qoşulma məntiqi
+24.7 Nə zaman SSH tunnel lazımdır
+24.8 pgAdmin içində SSH tunneling konfiqurasiyası
+24.9 local port forwarding məntiqi
+24.10 connection failure halları
+24.11 psql ilə alternativ qoşulma
+24.12 DB list və table list yoxlaması
+24.13 readonly işləmək intizamı
+Bölmə 25. PostgreSQL ilə baza səviyyəsində işləmək
+25.1 \l
+25.2 \c
+25.3 \dt
+25.4 basic select
+25.5 limit ilə təhlükəsiz yoxlama
+25.6 update/delete riskləri
+25.7 migration zamanı DB-lərin yoxlanması
+25.8 owner və permission anlayışı
+25.9 connection refusal, pg_hba, listen_addresses əsasları
+Bölmə 26. Postman ilə API yoxlamaları
+26.1 Postman nədir
+26.2 GET request atmaq
+26.3 POST request atmaq
+26.4 Headers əlavə etmək
+26.5 X-API-KEY nədir
+26.6 X-API-KEY ilə request
+26.7 Authorization header anlayışı
+26.8 query param və path param
+26.9 body göndərmək
+JSON
+form-data
+26.10 response oxumaq
+status code
+headers
+body
+26.11 SSL verify problemləri
+26.12 internal API endpoint-lərin test edilməsi
+26.13 curl-dan Postman-a və Postman-dan curl-a keçid
+Bölmə 27. Vault, Keycloak və auth əsasları
+27.1 Docs5-də auth axını
+27.2 Keycloak nə üçündür
+27.3 Vault nə üçündür
+27.4 BA nə qədər bilməlidir
+27.5 connection problemində ilkin yoxlama
+27.6 domain, port, TLS, credentials əlaqəsi
+27.7 bu servislər down olanda nə baş verir
+Bölmə 28. Storage əməliyyat məntiqi
+28.1 WSS Storage nədir
+28.2 blob anlayışı
+28.3 storage metadata və blob data fərqi
+28.4 storage servisin ayaqda olub-olmadığını yoxlamaq
+28.5 storage config faylları
+28.6 migration kontekstində storage
+28.7 preview və file access problemləri
+28.8 storage ilə bağlı tipik səhvlər
+Bölmə 29. Real debug metodologiyası
+29.1 Problemi necə parçalamaq
+29.2 “ətbiq açılmır” halında yoxlama ardıcıllığı
+29.3 “container ayaqdadır amma servis işləmir”
+29.4 “domain açılmır”
+29.5 “DB connection alınmır”
+29.6 “API cavab vermir”
+29.7 “fayl upload/download işləmir”
+29.8 “certificate error”
+29.9 “permission denied”
+29.10 “firewall bloklayır”
+29.11 “problem app-dədir, yoxsa infra-da?”
+Bölmə 30. Praktik ssenarilər
+30.1 SSH ilə serverə qoşul və lazımi qovluğu tap
+30.2 WinSCP ilə fayl yüklə
+30.3 compose ilə servisi qaldır
+30.4 container loglarını oxu
+30.5 container içinə fayl yerləşdir
+30.6 UFW ilə port aç
+30.7 pgAdmin ilə SSH tunnel qur və DB-yə bağlan
+30.8 Postman ilə X-API-KEY request at
+30.9 Python HTTP server qaldır və digər serverdən wget ilə faylı çək
+30.10 Linux serverdən Windows-a scp ilə fayl endir
+30.11 tar.gz backup hazırla və aç
+30.12 502 problemi üzrə ilkin analiz apar
+Bölmə 31. Check-listlər
+31.1 Serverə giriş check-list
+31.2 Docker servis check-list
+31.3 DB connection check-list
+31.4 API test check-list
+31.5 File transfer check-list
+31.6 Firewall check-list
+31.7 Prod-da dəyişiklik öncəsi check-list
+31.8 Incident zamanı check-list
+Bölmə 32. Cheat Sheet
+32.1 Ən vacib Linux komandaları
+32.2 Ən vacib Docker komandaları
+32.3 Ən vacib Docker Compose komandaları
+32.4 Ən vacib scp / wget / tar komandaları
+32.5 Ən vacib pgAdmin / PostgreSQL connection detalları
+32.6 Ən vacib Postman istifadə ssenariləri
+32.7 Ən vacib UFW qaydaları
+Bölmə 33. Təhlükəsizlik və əməliyyat intizamı
+33.1 Prod mühitdə ehtiyatlılıq
+33.2 Komandaları kor-koranə işlətməmək
+33.3 Backup almadan dəyişiklik etməmək
+33.4 Container daxilində qalıcı dəyişiklik etmə riskləri
+33.5 Credentials və secret-lərlə davranış
+33.6 Audit trail və dəyişiklik qeydləri
+Bölmə 34. Əlavələr
+34.1 Terminlər lüğəti
+34.2 Nümunə connection string-lər
+34.3 Nümunə compose hissələri
+34.4 Nümunə nginx hissələri
+34.5 Nümunə API request-lər
+34.6 Nümunə scp / wget / tar komandaları
+34.7 Nümunə troubleshooting matrix
